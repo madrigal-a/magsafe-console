@@ -1,13 +1,13 @@
 # Diseño del circuito (v1)
 
-Base para el esquemático de KiCad. **Estado: borrador sin verificar.** Los números de catálogo de JLCPCB (columna LCSC) están anotados de memoria: hay que confirmar cada uno, y su stock, al armar el esquemático.
+Descripción del esquemático de KiCad, que está en [kicad/](kicad/) y en [esquematico.pdf](esquematico.pdf). **Estado: borrador sin verificar.** Los números de catálogo de JLCPCB (columna LCSC) están anotados de memoria: hay que confirmar cada uno, y su stock, al armar el esquemático.
 
 Los pines de la ESP32-S3 son los de [docs/prototipo-conexiones.md](../docs/prototipo-conexiones.md).
 
 ## Energía
 
 ```
-USB-C ──5V──> cargador TP4056 ──> batería LiPo (con protección)
+USB-C ──5V──> cargador TP4056 ──> batería LiPo (con protección integrada)
    │                                   │
    └────> reparto de carga <───────────┘
                  │
@@ -20,11 +20,11 @@ USB-C ──5V──> cargador TP4056 ──> batería LiPo (con protección)
 |---|---|---|---|
 | Conector | USB-C de 16 pines | C165948 | CC1 y CC2 con 5.1 kΩ a GND cada uno |
 | Cargador | TP4056 | C16581 | Resistencia PROG de 2 kΩ: carga a unos 580 mA |
-| Protección | DW01A + FS8205A | C351410, C32254 | Corta por sobredescarga, sobrecarga y corto |
-| Reparto de carga | MOSFET P AO3401A + diodo Schottky | C15127 | Con USB conectado, la consola se alimenta del USB y no de la batería |
+| Protección | La de la propia batería | | Usar una batería con circuito de protección integrado. En v1 no va protección en la placa |
+| Reparto de carga | MOSFET P AO3401A + diodo Schottky B5819W | C15127 | Con USB conectado, la consola se alimenta del USB y no de la batería |
 | Regulador 3.3 V | AP2112K-3.3 | C51118 | 600 mA. Su pin EN va al interruptor de encendido |
-| Encendido | Interruptor deslizable | Por elegir | Apaga el regulador; la carga sigue funcionando |
-| Medición de batería | Divisor 100 kΩ + 100 kΩ, con 100 nF | | A GPIO 1 |
+| Encendido | Interruptor deslizable | Por elegir | Apaga el regulador; la carga sigue funcionando. 100 kΩ a GND en EN |
+| Medición de batería | Divisor 470 kΩ + 470 kΩ, con 100 nF | | A GPIO 1 |
 
 Indicadores: LED de carga y LED de carga completa en los pines CHRG y STDBY del TP4056.
 
@@ -51,7 +51,7 @@ Panel desnudo de 2.4" ST7789V con cable plano. **Pendiente:** número de pines y
 | CS | 10 |
 | DC | 9 |
 | RST | 14 |
-| Luz de fondo | 13, por PWM a través de un MOSFET N |
+| Luz de fondo | 13, por PWM a través de un MOSFET N AO3400A, con 100 kΩ a GND |
 
 ## microSD
 
@@ -98,7 +98,7 @@ Doce botones táctiles de perfil bajo, cada uno de su GPIO a GND, sin resistenci
 
 - Puntos de prueba en VBUS, VBAT, VSYS, 3V3, GND, EN, GPIO 0, TX y RX.
 - Pads para puerto serie (GPIO 43 y 44) por si el USB nativo falla.
-- Puentes de soldadura en la salida del regulador y en la alimentación de la pantalla, para aislar bloques.
+- Puente de soldadura en la salida del regulador, para aislar la ESP32 y probar primero la energía.
 
 ## Decisiones abiertas
 

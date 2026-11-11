@@ -21,7 +21,7 @@ Game Boy Advance queda fuera de esta versión: la ESP32-S3 no lo corre bien.
 |---|---|
 | [docs/](docs/) | Guía de conexiones del prototipo |
 | [firmware/](firmware/) | Target de Retro-Go para esta consola |
-| [hardware/](hardware/) | Proyecto de KiCad (pendiente) |
+| [hardware/](hardware/) | Esquemático en KiCad y diseño del circuito |
 
 ## Plan
 

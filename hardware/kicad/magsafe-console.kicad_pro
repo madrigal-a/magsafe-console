@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "filename": "magsafe-console.kicad_pro",
+    "version": 3
+  },
+  "schematic": {
+    "legacy_lib_dir": "",
+    "legacy_lib_list": []
+  },
+  "sheets": [
+    [
+      "e008cc28-15a9-4d4e-b83d-d97b53ecce6d",
+      "Root"
+    ]
+  ],
+  "text_variables": {}
+}
