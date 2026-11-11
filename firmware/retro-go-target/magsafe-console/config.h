@@ -3,7 +3,7 @@
 // Basado en el target esp32-s3-devkit de Retro-Go (GPLv2).
 //
 // ESTADO: sin probar en hardware. Los pines coinciden con docs/prototipo-conexiones.md.
-// Pines que NO se usan a proposito: 3, 45, 46 (arranque), 19/20 (USB),
+// Pines que NO se usan a proposito: 45 (arranque), 19/20 (USB),
 // 26-37 (flash y PSRAM), 43/44 (puerto serie).
 
 // Target definition
@@ -44,6 +44,8 @@
     {RG_KEY_RIGHT,  .num = GPIO_NUM_7,  .pullup = 1, .level = 0},\
     {RG_KEY_A,      .num = GPIO_NUM_8,  .pullup = 1, .level = 0},\
     {RG_KEY_B,      .num = GPIO_NUM_21, .pullup = 1, .level = 0},\
+    {RG_KEY_X,      .num = GPIO_NUM_3,  .pullup = 1, .level = 0},\
+    {RG_KEY_Y,      .num = GPIO_NUM_46, .pullup = 1, .level = 0},\
     {RG_KEY_START,  .num = GPIO_NUM_47, .pullup = 1, .level = 0},\
     {RG_KEY_SELECT, .num = GPIO_NUM_48, .pullup = 1, .level = 0},\
     {RG_KEY_MENU,   .num = GPIO_NUM_0,  .pullup = 1, .level = 0},\

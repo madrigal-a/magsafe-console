@@ -83,7 +83,7 @@ MAX98357AETE (LCSC: C910544), alimentado desde VSYS.
 
 ## Botones
 
-Doce botones táctiles TS-1187A (5.1 × 5.1 × 1.5 mm, LCSC C318884), cada uno de su GPIO a GND, sin resistencias externas. El de reset es igual.
+Doce botones frontales TS-1187A (5.1 × 5.1 × 1.5 mm, LCSC C318884) y dos gatillos de actuación lateral TS24CA (LCSC C393942) en la orilla superior. Cada uno va de su GPIO a GND, sin resistencias externas. El de reset es un TS-1187A.
 
 | Botón | GPIO | Botón | GPIO |
 |---|---|---|---|
@@ -91,8 +91,9 @@ Doce botones táctiles TS-1187A (5.1 × 5.1 × 1.5 mm, LCSC C318884), cada uno d
 | Abajo | 5 | Select | 48 |
 | Izquierda | 6 | Menu | 0 |
 | Derecha | 7 | Option | 39 |
-| A | 8 | L | 2 |
-| B | 21 | R | 38 |
+| A | 8 | L (gatillo) | 2 |
+| B | 21 | R (gatillo) | 38 |
+| X | 3 | Y | 46 |
 
 ## Para depurar la primera placa
 

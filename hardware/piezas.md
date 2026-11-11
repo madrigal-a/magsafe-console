@@ -13,7 +13,8 @@ Cada pieza del esquemático lleva su número en el campo `LCSC`.
 | TYPE-C-31-M-12 | Conector USB-C | C165948 | Extendida | 0.19 |
 | TF-01A | Ranura microSD | C91145 | Extendida | 0.19 |
 | MSK12C02 | Interruptor de encendido | C431540 | Extendida | 0.05 |
-| TS-1187A-B-A-B | Botones (13) | C318884 | Básica | 0.02 |
+| TS-1187A-B-A-B | Botones frontales y reset (13) | C318884 | Básica | 0.02 |
+| TS24CA | Gatillos L y R, actuación lateral | C393942 | Extendida | 0.03 |
 | AO3401A | MOSFET P, reparto de carga | C15127 | Básica | 0.09 |
 | AO3400A | MOSFET N, luz de fondo | C20917 | Básica | 0.09 |
 | B5819W | Diodo Schottky | C8598 | Básica | 0.03 |
@@ -26,14 +27,14 @@ Cada pieza del esquemático lleva su número en el campo `LCSC`.
 
 Las piezas de una consola suman unos 8 USD, sin pantalla, batería ni bocina.
 
-JLCPCB cobra un cargo fijo por cada tipo de pieza extendida (unos 3 USD, por confirmar al cotizar). Hay siete, y no encontré equivalentes básicos para ellas.
+JLCPCB cobra un cargo fijo por cada tipo de pieza extendida (unos 3 USD, por confirmar al cotizar). Hay ocho, y no encontré equivalentes básicos para ellas.
 
 ## Huellas
 
 | Origen | Piezas |
 |---|---|
 | Librería oficial de KiCad | ESP32-S3, TP4056, AP2112K, MAX98357A, USB-C, interruptor, MOSFET, diodo, LED, resistencias, condensadores |
-| Catálogo de JLCPCB, en `kicad/lib/` con modelo 3D | Ranura microSD TF-01A y botón TS-1187A |
+| Catálogo de JLCPCB, en `kicad/lib/` con modelo 3D | Ranura microSD TF-01A, botón TS-1187A y gatillo TS24CA |
 | Pads para soldar cable | Batería y bocina |
 | Pendiente | Conector de la pantalla |
 
@@ -42,3 +43,5 @@ JLCPCB cobra un cargo fijo por cada tipo de pieza extendida (unos 3 USD, por con
 - Las huellas no se han comparado todavía contra las hojas de datos.
 - Del botón solo se conectan dos pads en diagonal (1 y 4). Así funciona sin importar qué pares estén unidos por dentro.
 - El pin de detección de tarjeta de la ranura microSD queda sin usar.
+- Falta confirmar en la hoja de datos que el TS24CA es de actuación lateral y hacia qué lado apunta su botón.
+- La huella del TS24CA trae dos pads de sujeción con forma especial que hay que revisar en KiCad.

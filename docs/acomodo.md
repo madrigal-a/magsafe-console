@@ -28,7 +28,8 @@ El ancho sube de 62 a 64 mm para dejar pared de carcasa a los lados de la pantal
 |---|---|
 | Pantalla 2.4", horizontal | Arriba, de orilla a orilla (60 × 43 mm) |
 | Cruceta | Abajo a la izquierda |
-| A y B | Abajo a la derecha, en diagonal |
+| A, B, X y Y | Abajo a la derecha, en rombo |
+| L y R | Orilla superior, gatillos de actuación lateral |
 | Select y Start | Centro, abajo |
 | Menu y Option | Esquinas inferiores |
 
@@ -48,6 +49,6 @@ El ancho sube de 62 a 64 mm para dejar pared de carcasa a los lados de la pantal
 
 | Tema | Opciones |
 |---|---|
-| Botones L y R | No hay lugar natural en el frente. Opción A: quitarlos en v1 (NES, Game Boy y Game Boy Color no los usan). Opción B: ponerlos en la orilla superior con botones de actuación lateral, que es otra pieza |
 | Batería | El modelo se elige según el espacio final; 55 × 40 × 3 mm da unos 700 a 800 mAh |
+| Gatillos y pantalla | Los gatillos van en la orilla superior, junto a la pantalla; hay que comprobar que quepan entre el panel y la pared de la carcasa |
 | Imanes y antena | Verificar en el prototipo que el anillo no afecte al WiFi ni a la bocina |

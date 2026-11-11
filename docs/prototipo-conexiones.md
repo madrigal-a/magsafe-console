@@ -12,7 +12,7 @@ Objetivo: comprobar pantalla, SD, audio, botones y Retro-Go antes de pedir la PC
 | Pantalla IPS 2.4" 320×240, ST7789, SPI | Versión en módulo con pines |
 | Módulo SD HW-203 | Con la microSD en su adaptador |
 | Módulo MAX98357A + bocina de 8 Ω | |
-| 11 botones táctiles | El botón MENU es el BOOT de la placa |
+| 13 botones táctiles | El botón MENU es el BOOT de la placa |
 
 Todo se alimenta del pin **3V3** de la placa y comparte **GND**.
 
@@ -69,12 +69,16 @@ Cada botón va de su pin a **GND**. No llevan resistencias: se usa el pull-up in
 | Derecha | 7 |
 | A | 8 |
 | B | 21 |
+| X | 3 |
+| Y | 46 |
 | Start | 47 |
 | Select | 48 |
 | Menu | 0 (botón BOOT de la placa) |
 | Option | 39 |
 | L | 2 |
 | R | 38 |
+
+GPIO 3 y 46 también se leen al arrancar, pero un botón a GND no los afecta.
 
 En algunas placas el LED RGB está en GPIO 48 o 38. No estorba, pero puede parpadear al presionar Select o R.
 
@@ -86,7 +90,7 @@ GPIO 1 mide la batería a través de un divisor de dos resistencias iguales. En 
 
 | GPIO | Motivo |
 |---|---|
-| 3, 45, 46 | Definen el modo de arranque |
+| 45 | Define el voltaje de la memoria al arrancar |
 | 19, 20 | USB |
 | 26 a 37 | Memoria flash y PSRAM |
 | 43, 44 | Puerto serie |
