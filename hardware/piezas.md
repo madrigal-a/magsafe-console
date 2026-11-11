@@ -4,7 +4,7 @@ Verificadas en el catálogo de ensamble de JLCPCB el 10 de noviembre de 2026: el
 
 Cada pieza del esquemático lleva su número en el campo `LCSC`.
 
-La placa se va a armar a mano, así que las piezas se compran aparte (LCSC u otra tienda) y a JLCPCB solo se le pide la placa y el esténcil. Por eso las resistencias y condensadores pasaron de 0402 a 0603 el 10 de noviembre de 2026; los precios de esas filas son aproximados.
+La placa se va a armar a mano, así que las piezas se compran aparte en LCSC, con estos mismos números, y a JLCPCB solo se le pide la placa y el esténcil. Por eso las resistencias y condensadores pasaron de 0402 a 0603 el 10 de noviembre de 2026; los precios de esas filas son aproximados.
 
 | Pieza | Uso | LCSC | Tipo | Precio aprox. (USD) |
 |---|---|---|---|---|
