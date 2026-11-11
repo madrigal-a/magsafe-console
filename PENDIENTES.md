@@ -11,7 +11,7 @@ Actualizado el 10 de noviembre de 2026. Lista de lo que falta, en el orden en qu
 - [x] **Decidir 2 o 4 capas.** 4 capas.
 - [x] **Agujero mínimo.** En 4 capas JLCPCB acepta 0.2 mm, así que las vías térmicas quedan como están.
 - [x] **Elegir batería.** LiPo 304050 con protección (3 × 40 × 50 mm, unos 600 mAh). Falta comprarla.
-- [ ] **Decidir la corriente de carga.** R3 de 2 kΩ carga a unos 600 mA; con 3 kΩ serían unos 400 mA, más suave para esa batería.
+- [x] **Corriente de carga.** R3 pasó a 3 kΩ (C4211): unos 400 mA.
 - [ ] **Definir la licencia del repo.**
 
 ## Cuando lleguen las piezas del prototipo (22 al 24 de noviembre de 2026)

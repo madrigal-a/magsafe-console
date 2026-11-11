@@ -19,7 +19,7 @@ USB-C ──5V──> cargador TP4056 ──> batería LiPo (con protección int
 | Bloque | Pieza | LCSC | Notas |
 |---|---|---|---|
 | Conector | USB-C de 16 pines | C165948 | CC1 y CC2 con 5.1 kΩ a GND cada uno |
-| Cargador | TP4056 | C16581 | Resistencia PROG de 2 kΩ: carga a unos 580 mA |
+| Cargador | TP4056 | C16581 | Resistencia PROG de 3 kΩ: carga a unos 400 mA, suave para la batería de 600 mAh |
 | Protección | La de la propia batería | | Usar una batería con circuito de protección integrado. En v1 no va protección en la placa |
 | Reparto de carga | MOSFET P AO3401A + diodo Schottky B5819W | C15127 | Con USB conectado, la consola se alimenta del USB y no de la batería |
 | Regulador 3.3 V | AP2112K-3.3 | C51118 | 600 mA. Su pin EN va al interruptor de encendido |

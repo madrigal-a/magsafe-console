@@ -67,7 +67,7 @@ Revisada con `kicad-cli pcb drc` el 10 de noviembre de 2026:
 
 Elegida: **LiPo 304050 con protección integrada** (3 × 40 × 50 mm, unos 600 mAh según el vendedor, 3.7 V, con cables). Cabe en el espacio de 55 × 40 × 3 mm dejando lugar para la plaquita de protección. Con un consumo estimado de 150 a 200 mA da de 3 a 4 horas.
 
-Pendiente de decidir: R3 es de 2 kΩ, que carga a unos 600 mA. Para una batería de 600 mAh eso es el máximo; con 3 kΩ cargaría a unos 400 mA, más suave.
+R3 es de 3 kΩ: carga a unos 400 mA, más suave para la batería (decidido el 10 de noviembre de 2026; antes 2 kΩ y unos 600 mA).
 
 ## Decisiones que tomé y hay que confirmar
 

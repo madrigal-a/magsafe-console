@@ -22,7 +22,7 @@ La placa se va a armar a mano, así que las piezas se compran aparte en LCSC, co
 | B5819W | Diodo Schottky | C8598 | Básica | 0.03 |
 | KT-0603R | LED rojo, cargando | C2286 | Básica | 0.01 |
 | KT-0805G | LED verde, carga completa | C2297 | Básica | 0.02 |
-| Resistencias 0603 | 10 Ω, 1 k, 2 k, 5.1 k, 10 k, 100 k, 1 M | C22859, C21190, C22975, C23186, C25804, C25803, C22935 | Básicas | 0.001 |
+| Resistencias 0603 | 10 Ω, 1 k, 3 k, 5.1 k, 10 k, 100 k, 1 M | C22859, C21190, C4211, C23186, C25804, C25803, C22935 | Básicas | 0.001 |
 | Condensador 100 nF 0603 | Desacoplo | C14663 | Básica | 0.003 |
 | Condensador 1 µF 0603 | Regulador y reset | C15849 | Básica | 0.006 |
 | Condensador 10 µF 0603 | Filtrado | C19702 | Básica | 0.02 |
