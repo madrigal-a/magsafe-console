@@ -17,4 +17,4 @@ Aquí irá el proyecto de KiCad (esquemático y PCB) y los archivos de fabricaci
 
 La asignación de pines está en [docs/prototipo-conexiones.md](../docs/prototipo-conexiones.md).
 
-Las piezas concretas de energía y sus números de catálogo se definen al hacer el esquemático.
+El diseño por bloques, con piezas y conexiones, está en [circuito.md](circuito.md).
