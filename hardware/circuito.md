@@ -1,6 +1,6 @@
 # Diseño del circuito (v1)
 
-Descripción del esquemático de KiCad, que está en [kicad/](kicad/) y en [esquematico.pdf](esquematico.pdf). **Estado: borrador sin verificar.** Los números de catálogo de JLCPCB (columna LCSC) están anotados de memoria: hay que confirmar cada uno, y su stock, al armar el esquemático.
+Descripción del esquemático de KiCad, que está en [kicad/](kicad/) y en [esquematico.pdf](esquematico.pdf). **Estado: borrador sin probar en hardware.** Los números de catálogo de JLCPCB están verificados en [piezas.md](piezas.md).
 
 Los pines de la ESP32-S3 son los de [docs/prototipo-conexiones.md](../docs/prototipo-conexiones.md).
 
@@ -16,21 +16,21 @@ USB-C ──5V──> cargador TP4056 ──> batería LiPo (con protección int
                  └──> amplificador de audio
 ```
 
-| Bloque | Pieza | LCSC (por verificar) | Notas |
+| Bloque | Pieza | LCSC | Notas |
 |---|---|---|---|
 | Conector | USB-C de 16 pines | C165948 | CC1 y CC2 con 5.1 kΩ a GND cada uno |
 | Cargador | TP4056 | C16581 | Resistencia PROG de 2 kΩ: carga a unos 580 mA |
 | Protección | La de la propia batería | | Usar una batería con circuito de protección integrado. En v1 no va protección en la placa |
 | Reparto de carga | MOSFET P AO3401A + diodo Schottky B5819W | C15127 | Con USB conectado, la consola se alimenta del USB y no de la batería |
 | Regulador 3.3 V | AP2112K-3.3 | C51118 | 600 mA. Su pin EN va al interruptor de encendido |
-| Encendido | Interruptor deslizable | Por elegir | Apaga el regulador; la carga sigue funcionando. 100 kΩ a GND en EN |
-| Medición de batería | Divisor 470 kΩ + 470 kΩ, con 100 nF | | A GPIO 1 |
+| Encendido | Interruptor deslizable MSK12C02 | C431540 | Apaga el regulador; la carga sigue funcionando. 100 kΩ a GND en EN |
+| Medición de batería | Divisor 1 MΩ + 1 MΩ, con 100 nF | | A GPIO 1 |
 
 Indicadores: LED de carga y LED de carga completa en los pines CHRG y STDBY del TP4056.
 
 ## ESP32-S3-WROOM-1-N16R8
 
-LCSC por verificar: C2913202.
+LCSC: C2913202.
 
 | Conexión | Detalle |
 |---|---|
@@ -55,7 +55,7 @@ Panel desnudo de 2.4" ST7789V con cable plano. **Pendiente:** número de pines y
 
 ## microSD
 
-Ranura push-push (LCSC por verificar: C91145), por SPI.
+Ranura push-push (LCSC: C91145), por SPI.
 
 | Señal | GPIO |
 |---|---|
@@ -68,7 +68,7 @@ Resistencias de 10 kΩ a 3V3 en CS y MISO. Condensador de 100 nF en la alimentac
 
 ## Audio
 
-MAX98357AETE (LCSC por verificar: C910544), alimentado desde VSYS.
+MAX98357AETE (LCSC: C910544), alimentado desde VSYS.
 
 | Señal | GPIO |
 |---|---|
@@ -83,7 +83,7 @@ MAX98357AETE (LCSC por verificar: C910544), alimentado desde VSYS.
 
 ## Botones
 
-Doce botones táctiles de perfil bajo, cada uno de su GPIO a GND, sin resistencias externas.
+Doce botones táctiles TS-1187A (5.1 × 5.1 × 1.5 mm, LCSC C318884), cada uno de su GPIO a GND, sin resistencias externas. El de reset es igual.
 
 | Botón | GPIO | Botón | GPIO |
 |---|---|---|---|
@@ -106,5 +106,5 @@ Doce botones táctiles de perfil bajo, cada uno de su GPIO a GND, sin resistenci
 |---|---|
 | Conector de la pantalla y resistencia de la luz de fondo | Tener el panel en la mano |
 | Modelo de batería | Espacio que deje la PCB dentro de la carcasa |
-| Bocina plana y modelo de botones | Grosor final |
+| Bocina plana | Grosor final |
 | Posición del anillo MagSafe | No tapar la antena ni la cámara del celular |
