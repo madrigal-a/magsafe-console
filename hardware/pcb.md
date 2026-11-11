@@ -53,29 +53,24 @@ Las medidas son desde la esquina superior izquierda, viendo la consola de frente
 | Tema | Lo que puse | Por qué revisarlo |
 |---|---|---|
 | Antena del ESP32 | Orilla inferior, zona sin cobre solo bajo la antena | El USB-C queda pegado a la antena y el celular queda detrás. El WiFi puede salir débil. Se deja así y se mide en el prototipo |
-| Botones por los dos lados | Botones al frente, el resto atrás | JLCPCB cobra más por ensamblar las dos caras (ver abajo). La alternativa es soldar a mano los 12 botones del frente |
 | Centro del anillo MagSafe | A 31 mm de la orilla superior. Aprobado | Falta medir en el celular que la consola no tape la cámara ni se salga por abajo |
 | USB-C | Sobresale 1.1 mm | Depende del grosor de la pared de la carcasa |
 | Capas | 2 | Con 4 capas el trazado sería más fácil, a mayor costo |
 | Tornillos | No hay agujeros | Se definen con la carcasa |
 
-## Ensamble de los botones
+## Ensamble
 
-Los botones son de montaje superficial, pero sus cuatro patas salen por los lados, así que se pueden soldar con un cautín normal, sin esténcil ni horno.
+**La placa completa se arma a mano.** A JLCPCB solo se le pide la placa y el esténcil, y las piezas se compran aparte.
 
-Precios de JLCPCB consultados el 10 de noviembre de 2026, por pedido y sin contar piezas:
+- Los botones se sueldan con cautín normal: sus cuatro patas salen por los lados.
+- El amplificador y el ESP32 tienen pads por debajo. Necesitan pasta y pistola de calor o plancha.
+- Las resistencias y condensadores son 0603 para que sean manejables a mano.
 
-| Opción | Preparación | Esténcil |
-|---|---|---|
-| Económico, una cara | 8.18 USD | 1.53 USD |
-| Estándar, una cara | 25.56 USD | 8.21 USD |
-| Estándar, dos caras | 51.12 USD | 16.42 USD |
-
-El ensamble económico solo arma una cara. Soldar los botones a mano ahorra entre 34 y 58 USD por pedido, según si JLCPCB acepta el pedido como económico. Eso se ve al cotizar.
+El ensamble en JLCPCB se descartó por costo. El ESP32-S3-WROOM-1-N16R8 solo se puede montar con el servicio estándar, y armar la cara de atrás de 5 placas salía en unos 115 USD contra unos 50 USD armándolas a mano (estimado del 10 de noviembre de 2026, sin envío ni impuestos).
 
 ## Lo que sigue
 
-1. Abrir el proyecto en KiCad y revisar la colocación.
+1. Elegir la bocina plana y la batería definitivas; su tamaño mueve la colocación.
 2. Elegir el conector de la pantalla cuando llegue el panel y colocarlo.
 3. Agregar los agujeros de montaje según la carcasa.
 4. Trazar las pistas: primero USB y alimentación, después pantalla, tarjeta y audio, al final los botones.

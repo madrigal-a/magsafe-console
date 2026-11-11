@@ -17,7 +17,7 @@ Hecha el 10 de noviembre de 2026 sobre el esquemático v0.1. Se comparó cada hu
 | MSK12C02 | Huella de KiCad para esa misma pieza | Correcta |
 | AO3401A, AO3400A | SOT-23 (1 puerta, 2 fuente, 3 drenaje) | Correcta |
 | B5819W | SOD-123 (1 cátodo) | Correcta |
-| LED, resistencias, condensadores | 0603, 0805, 0402 | Correctas |
+| LED, resistencias, condensadores | 0603 y 0805 (las resistencias y condensadores chicos pasaron de 0402 a 0603 para soldar a mano) | Correctas |
 | Conector de pantalla (J3) | Sin huella | Pendiente: depende del panel |
 
 ## TS24CA, gatillos L y R

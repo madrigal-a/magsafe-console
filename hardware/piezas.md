@@ -4,6 +4,8 @@ Verificadas en el catálogo de ensamble de JLCPCB el 10 de noviembre de 2026: el
 
 Cada pieza del esquemático lleva su número en el campo `LCSC`.
 
+La placa se va a armar a mano, así que las piezas se compran aparte (LCSC u otra tienda) y a JLCPCB solo se le pide la placa y el esténcil. Por eso las resistencias y condensadores pasaron de 0402 a 0603 el 10 de noviembre de 2026; los precios de esas filas son aproximados.
+
 | Pieza | Uso | LCSC | Tipo | Precio aprox. (USD) |
 |---|---|---|---|---|
 | ESP32-S3-WROOM-1-N16R8 | Cerebro | C2913202 | Extendida | 4.95 |
@@ -20,9 +22,9 @@ Cada pieza del esquemático lleva su número en el campo `LCSC`.
 | B5819W | Diodo Schottky | C8598 | Básica | 0.03 |
 | KT-0603R | LED rojo, cargando | C2286 | Básica | 0.01 |
 | KT-0805G | LED verde, carga completa | C2297 | Básica | 0.02 |
-| Resistencias 0402 | 10 Ω, 1 k, 2 k, 5.1 k, 10 k, 100 k, 1 M | C25077, C11702, C4109, C25905, C25744, C25741, C26083 | Básicas | 0.001 |
-| Condensador 100 nF 0402 | Desacoplo | C1525 | Básica | 0.003 |
-| Condensador 1 µF 0402 | Regulador y reset | C52923 | Básica | 0.006 |
+| Resistencias 0603 | 10 Ω, 1 k, 2 k, 5.1 k, 10 k, 100 k, 1 M | C22859, C21190, C22975, C23186, C25804, C25803, C22935 | Básicas | 0.001 |
+| Condensador 100 nF 0603 | Desacoplo | C14663 | Básica | 0.003 |
+| Condensador 1 µF 0603 | Regulador y reset | C15849 | Básica | 0.006 |
 | Condensador 10 µF 0603 | Filtrado | C19702 | Básica | 0.02 |
 
 Las piezas de una consola suman unos 8 USD, sin pantalla, batería ni bocina.
