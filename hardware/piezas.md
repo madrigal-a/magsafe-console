@@ -33,15 +33,18 @@ JLCPCB cobra un cargo fijo por cada tipo de pieza extendida (unos 3 USD, por con
 
 | Origen | Piezas |
 |---|---|
-| Librería oficial de KiCad | ESP32-S3, TP4056, AP2112K, MAX98357A, USB-C, interruptor, MOSFET, diodo, LED, resistencias, condensadores |
+| Librería oficial de KiCad | TP4056, AP2112K, MAX98357A, USB-C, interruptor, MOSFET, diodo, LED, resistencias, condensadores |
 | Catálogo de JLCPCB, en `kicad/lib/` con modelo 3D | Ranura microSD TF-01A, botón TS-1187A y gatillo TS24CA |
+| Copia modificada de la de KiCad, en `kicad/lib/` | ESP32-S3 |
 | Pads para soldar cable | Batería y bocina |
 | Pendiente | Conector de la pantalla |
 
-## Pendiente de revisar
+## Revisión contra hojas de datos
 
-- Las huellas no se han comparado todavía contra las hojas de datos.
-- Del botón solo se conectan dos pads en diagonal (1 y 4). Así funciona sin importar qué pares estén unidos por dentro.
+Hecha el 10 de noviembre de 2026. El detalle está en [revision-huellas.md](revision-huellas.md).
+
+- El TS24CA es de actuación lateral. Su botón apunta hacia el lado de los pads de sujeción.
+- Del botón TS-1187A se usan los pads 1 y 4, que quedan en filas distintas. Es correcto.
+- La huella de la ranura microSD tenía los contactos 0.1 mm corridos. Ya está corregida.
 - El pin de detección de tarjeta de la ranura microSD queda sin usar.
-- Falta confirmar en la hoja de datos que el TS24CA es de actuación lateral y hacia qué lado apunta su botón.
-- La huella del TS24CA trae dos pads de sujeción con forma especial que hay que revisar en KiCad.
+- El ESP32 usa una copia de la huella con la zona prohibida solo bajo la antena.

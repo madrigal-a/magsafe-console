@@ -6,20 +6,23 @@ Proyecto de KiCad y, más adelante, los archivos de fabricación para JLCPCB.
 |---|---|
 | [kicad/magsafe-console.kicad_pro](kicad/magsafe-console.kicad_pro) | Proyecto. Abrir este en KiCad (formato 9, compatible con 10) |
 | [kicad/magsafe-console.kicad_sch](kicad/magsafe-console.kicad_sch) | Esquemático v0.1 |
+| [kicad/magsafe-console.kicad_pcb](kicad/magsafe-console.kicad_pcb) | PCB: contorno y colocación inicial, sin pistas |
 | [esquematico.pdf](esquematico.pdf) | El esquemático en PDF |
 | [circuito.md](circuito.md) | Explicación del circuito por bloques |
 | [piezas.md](piezas.md) | Piezas verificadas en el catálogo de JLCPCB |
+| [revision-huellas.md](revision-huellas.md) | Revisión de las huellas contra las hojas de datos |
+| [pcb.md](pcb.md) | Estado de la PCB y dónde quedó cada pieza |
 | [kicad/lib/](kicad/lib/) | Símbolos, huellas y modelos 3D de piezas que no trae KiCad |
 
 ## Estado del esquemático
 
 - Pasa la revisión eléctrica (ERC) de KiCad 9 sin errores. Queda un aviso inofensivo en el pad térmico del amplificador.
-- **Sin probar en hardware** y sin revisar todavía contra las hojas de datos de cada pieza.
+- **Sin probar en hardware.**
 - Las conexiones se hacen con etiquetas de red en vez de cables largos: dos pines con la misma etiqueta están conectados.
 - **Provisional:** el conector de la pantalla (J3) y la resistencia de la luz de fondo (R13).
 - **Sin huella asignada todavía:** solo el conector de la pantalla.
-- Las huellas aún no se han comparado contra las hojas de datos.
-- La PCB aún no existe.
+- Las huellas ya se compararon contra las hojas de datos: ver [revision-huellas.md](revision-huellas.md).
+- La PCB está iniciada: ver [pcb.md](pcb.md).
 
 **Pendiente:** elegir el modelo exacto de pantalla. Su conector define parte del esquemático.
 

@@ -30,8 +30,7 @@ El ancho sube de 62 a 64 mm para dejar pared de carcasa a los lados de la pantal
 | Cruceta | Abajo a la izquierda |
 | A, B, X y Y | Abajo a la derecha, en rombo |
 | L y R | Orilla superior, gatillos de actuación lateral |
-| Select y Start | Centro, abajo |
-| Menu y Option | Esquinas inferiores |
+| Menu, Select, Start y Option | En fila debajo de la cruceta y de A, B, X, Y. Menu y Option a los extremos, lejos de las esquinas para no tocarlos con las manos |
 
 ## Interior, lado trasero de la PCB
 
@@ -43,7 +42,7 @@ El ancho sube de 62 a 64 mm para dejar pared de carcasa a los lados de la pantal
 | Bocina | Zona de botones, al centro |
 | Ranura microSD | Orilla lateral, la tarjeta entra de lado |
 | USB-C | Orilla inferior, al centro |
-| Interruptor de encendido | Orilla lateral |
+| Interruptor de encendido | Orilla lateral derecha, justo debajo de la pantalla |
 
 ## Decisiones abiertas
 
