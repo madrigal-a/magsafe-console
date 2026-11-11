@@ -1,15 +1,29 @@
 # PCB
 
-Estado al 10 de noviembre de 2026: **contorno y colocación inicial, sin pistas.** Es un punto de partida para mover piezas en KiCad, no un diseño terminado.
+Estado al 10 de noviembre de 2026: **4 capas, trazada toda menos la pantalla.** Falta el conector de la pantalla (J3), los agujeros de montaje y la serigrafía. Todavía no se puede fabricar.
+
+![Placa trazada](../docs/placa-trazada.png)
+
+Rojo: cara de enfrente. Azul: cara de atrás. Verde: capa interna 2. Vista desde enfrente.
 
 ## Qué tiene el archivo
 
-- Contorno de 64 × 98 mm con esquinas de 4 mm de radio. Grosor de 0.8 mm, 2 capas.
-- Las 68 huellas del esquemático con sus redes ya asignadas. Falta solo el conector de la pantalla (J3), que no tiene huella.
-- Planos de tierra en las dos caras.
-- Zona sin cobre bajo la antena del ESP32.
-- Reglas: pista y separación mínimas de 0.15 mm, 0.3 mm a la orilla, vías de 0.6/0.3 mm. Clase `Potencia` de 0.5 mm para VBUS, VBAT, VSYS, 3.3 V y bocina.
+- Contorno de 64 × 98 mm con esquinas de 4 mm de radio. Grosor de 0.8 mm, **4 capas**.
+- Capas: enfrente (botones y señal), interna 1 (plano de tierra completo), interna 2 (señal y relleno de tierra), atrás (piezas y señal).
+- Las 68 huellas del esquemático. Falta solo el conector de la pantalla (J3), que no tiene huella.
+- **482 tramos de pista y 102 vías.** Todas las redes conectadas menos las seis de la pantalla que van a J3 (CS, DC, MOSI, SCK, RST y los dos del LED), que se trazan cuando exista el conector.
+- Zona sin cobre bajo la antena del ESP32, en las cuatro capas.
+- Sin pistas ni vías en la cara de atrás bajo el cuerpo del USB-C y de la ranura microSD.
+- Reglas: pista y separación mínimas de 0.15 mm, 0.3 mm a la orilla, vías de 0.6/0.3 mm, agujero mínimo de 0.2 mm. Clase `Potencia` de 0.4 mm para VBUS, VBAT, VSYS, 3.3 V y bocina; se adelgaza a 0.2 mm al entrar a los pads finos del amplificador y del USB-C.
 - Dibujos de referencia en la capa `Dwgs.User`: pantalla, batería, anillo MagSafe y bocina. No se fabrican.
+
+## Cómo se trazó
+
+Con un trazador automático propio (`hardware/herramientas/router.py`), no a mano. La salida del USB-C sí está dibujada a mano dentro del script, porque los pads de D+ y D- van intercalados. Es un trazado válido, no bonito: conviene repasarlo en KiCad antes de fabricar.
+
+Cambios de colocación que pidió el trazado: R1 y R2 intercambiaron lugar (cada una queda del lado de su pin CC) y C9 giró 180°.
+
+Para repetirlo: `PRESTITCH=$(cat prestitch.txt) python3 router.py entrada.kicad_pcb salida.kicad_pcb`, luego `finalize.py` e `islands.py` para coser la tierra. Necesita KiCad 9 (`pcbnew`), `shapely` y `numpy`.
 
 ## Dónde quedó cada cosa
 
@@ -42,21 +56,28 @@ Las medidas son desde la esquina superior izquierda, viendo la consola de frente
 
 ## Qué marca la revisión de reglas
 
-- 94 conexiones sin trazar: es lo esperado, no hay pistas.
-- 18 avisos por las vías térmicas de 0.2 mm del ESP32. Falta confirmar el mínimo de JLCPCB.
+Revisada con `kicad-cli pcb drc` el 10 de noviembre de 2026:
+
+- **Cero errores, cero conexiones sin trazar** entre las piezas que ya están en la placa.
 - Falta la huella de J3.
 - Avisos de serigrafía encimada o cortada por la orilla. Se arreglan al acomodar los textos.
-- No hay piezas encimadas, cortos ni cobre fuera de la placa.
+- Las vías térmicas de 0.2 mm del ESP32 y del cargador ya no marcan aviso: en placas de 4 capas JLCPCB acepta agujeros de 0.2 mm, y como el anillo es de 0.6 mm no llevan cargo extra.
+
+## Batería
+
+Elegida: **LiPo 304050 con protección integrada** (3 × 40 × 50 mm, unos 600 mAh según el vendedor, 3.7 V, con cables). Cabe en el espacio de 55 × 40 × 3 mm dejando lugar para la plaquita de protección. Con un consumo estimado de 150 a 200 mA da de 3 a 4 horas.
+
+Pendiente de decidir: R3 es de 2 kΩ, que carga a unos 600 mA. Para una batería de 600 mAh eso es el máximo; con 3 kΩ cargaría a unos 400 mA, más suave.
 
 ## Decisiones que tomé y hay que confirmar
 
 | Tema | Lo que puse | Por qué revisarlo |
 |---|---|---|
 | Antena del ESP32 | Orilla inferior, zona sin cobre solo bajo la antena | El USB-C queda pegado a la antena y el celular queda detrás. El WiFi puede salir débil. Se deja así y se mide en el prototipo |
-| Centro del anillo MagSafe | A 31 mm de la orilla superior. Aprobado | Falta medir en el celular que la consola no tape la cámara ni se salga por abajo |
+| Centro del anillo MagSafe | A 31 mm de la orilla superior. Aprobado | Pensado para iPhone; falta la prueba física con un recorte de 64 × 98 mm |
 | USB-C | Sobresale 1.1 mm | Depende del grosor de la pared de la carcasa |
-| Capas | 2 | Con 4 capas el trazado sería más fácil, a mayor costo |
-| Tornillos | No hay agujeros | Se definen con la carcasa |
+| Tornillos | No hay agujeros | Se definen con la carcasa. Al ponerlos habrá que mover las pistas que estorben |
+| Pistas bajo la pantalla y la batería | Hay pistas en las dos caras de esa zona | Van cubiertas por la máscara; conviene poner cinta aislante bajo la batería |
 
 ## Ensamble
 
@@ -70,7 +91,7 @@ El ensamble en JLCPCB se descartó por costo. El ESP32-S3-WROOM-1-N16R8 solo se 
 
 ## Lo que sigue
 
-1. Elegir la bocina plana y la batería definitivas; su tamaño mueve la colocación.
-2. Elegir el conector de la pantalla cuando llegue el panel y colocarlo.
-3. Agregar los agujeros de montaje según la carcasa.
-4. Trazar las pistas: primero USB y alimentación, después pantalla, tarjeta y audio, al final los botones.
+1. Cuando llegue el panel: elegir el conector de la pantalla, colocarlo y trazar sus seis pistas.
+2. Agregar los agujeros de montaje según la carcasa.
+3. Acomodar la serigrafía.
+4. Repasar el trazado en KiCad y generar los archivos de fabricación.

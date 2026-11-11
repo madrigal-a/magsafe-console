@@ -4,13 +4,14 @@ Actualizado el 10 de noviembre de 2026. Lista de lo que falta, en el orden en qu
 
 ## Se puede hacer ya
 
-- [ ] **Lista de compra en LCSC.** Pieza por pieza, con cantidades para 5 placas, a partir de `hardware/piezas.md`. Confirmar existencias, mínimos de compra y costo de envío a México.
+- [x] **Lista de compra en LCSC.** Está en `hardware/lista-lcsc.md` y `hardware/lista-lcsc.csv` (unos 46 USD). Falta confirmar existencias, mínimos y envío a México en el carrito.
 - [ ] **Herramienta para armar.** Pasta de soldar, pistola de calor o plancha, pinzas finas y fundente. El esténcil se pide junto con la placa.
-- [ ] **Medir el celular.** Desde el centro del anillo MagSafe: la consola ocupa 31 mm hacia arriba y 67 mm hacia abajo. Confirmar que no tapa la cámara ni se sale por abajo.
+- [ ] **Probar en un iPhone con un recorte de 64 × 98 mm.** La consola se diseñó con medidas de iPhone (31 mm arriba y 67 mm abajo del centro del anillo). Falta la prueba física de que no tapa la cámara.
 - [ ] **Revisar la vista 3D en KiCad 10.** Si hay piezas sin cuerpo, corregir la ruta de los modelos (se guardaron con la de KiCad 9).
-- [ ] **Decidir 2 o 4 capas.** Con 4 capas el trazado es más fácil; cuesta más.
-- [ ] **Confirmar con JLCPCB** el agujero mínimo en 2 capas, por las vías térmicas de 0.2 mm del ESP32.
-- [ ] **Elegir batería.** El espacio previsto es de 55 × 40 × 3 mm.
+- [x] **Decidir 2 o 4 capas.** 4 capas.
+- [x] **Agujero mínimo.** En 4 capas JLCPCB acepta 0.2 mm, así que las vías térmicas quedan como están.
+- [x] **Elegir batería.** LiPo 304050 con protección (3 × 40 × 50 mm, unos 600 mAh). Falta comprarla.
+- [ ] **Decidir la corriente de carga.** R3 de 2 kΩ carga a unos 600 mA; con 3 kΩ serían unos 400 mA, más suave para esa batería.
 - [ ] **Definir la licencia del repo.**
 
 ## Cuando lleguen las piezas del prototipo (22 al 24 de noviembre de 2026)
@@ -26,9 +27,12 @@ Actualizado el 10 de noviembre de 2026. Lista de lo que falta, en el orden en qu
 - [ ] Colocar el conector de la pantalla.
 - [ ] Ajustar la colocación con las medidas reales de batería, bocina y pantalla.
 - [ ] Agujeros de montaje, de acuerdo con la carcasa.
-- [ ] Trazar las pistas: primero USB y alimentación, después pantalla, tarjeta y audio, al final los botones.
+- [x] Pasar a 4 capas.
+- [x] Trazar las pistas de todo menos la pantalla (trazador automático; ver `hardware/pcb.md`).
+- [ ] Trazar las seis pistas de la pantalla cuando esté J3.
+- [ ] Repasar el trazado automático en KiCad.
 - [ ] Acomodar los textos de la serigrafía.
-- [ ] Revisión de reglas sin errores.
+- [ ] Revisión de reglas sin errores (hoy: cero errores, solo avisos de serigrafía y falta J3).
 - [ ] Generar los archivos de fabricación.
 
 ## Pedido
