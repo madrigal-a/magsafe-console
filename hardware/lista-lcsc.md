@@ -1,42 +1,48 @@
-# Lista de compra en LCSC
+# Lista de compra
 
-Para 5 placas, con repuesto. Hecha el 10 de noviembre de 2026 a partir del esquemático.
+Para 4 consolas, con repuesto. Actualizada el 13 de noviembre de 2026. El detalle con precios está en `compras.xlsx`.
 
-Las cantidades de resistencias, condensadores, diodos y LED están redondeadas hacia arriba porque LCSC las vende por múltiplos. **El mínimo de compra, las existencias y el envío a México se confirman en el carrito**; los precios son los aproximados de `piezas.md`.
+## Se le compra al profesor
+
+| Pieza | Número | Uso | Pedir |
+|---|---|---|---|
+| Regulador 3.3 V | AP2112K-3.3TRG1 | U2 | 4 |
+| Conector USB-C de pines atravesados | GCT USB4085-GF-A | J1 | 4 |
+| MOSFET N SOT-23 | 2N7002 | Q2 | 6 |
+| Diodo Schottky SOD-123 | 1N5819HW-7-F | D3 | 6 |
+| Protección USB SOT-666 | USBLC6-2P6 | U5 | 6 |
+| LED verde 0603 | el que tenga | D2, carga completa | 8 |
+| LED azul 0603 | el que tenga | D1, cargando | 8 |
+| Resistencia 1 kΩ 0603 | | R4, R5 | 12 |
+| Resistencia 3 kΩ 0603 | | R3 | 10 |
+| Resistencia 5.1 kΩ 0603 | | R1, R2 | 12 |
+| Resistencia 1 MΩ 0603 | | R10, R11, R12 | 16 |
+| Capacitor 100 nF 0603 | | C7, C8, C10, C11 | 20 |
+| Capacitor 1 µF 0603 | | C3, C5 | 12 |
+| Capacitor 0805, 10 V o más (ver nota) | | C1, C2, C4, C6, C9, C12 | 30 |
+| Interruptor (lo tiene después) | MSK12C02 | SW1 | 6 |
+
+Nota: el esquemático dice 10 µF. La hoja de compras dice 15 µF; cualquiera de los dos sirve, falta confirmar cuál tiene el profesor.
+
+## Se compra en LCSC
 
 Para cargarla de un jalón: en LCSC, *BOM Tool*, subir `lista-lcsc.csv`.
 
-| Pieza | Uso | LCSC | Por placa | Pedir | Subtotal aprox. (USD) |
-|---|---|---|---|---|---|
-| ESP32-S3-WROOM-1-N16R8 | Cerebro (U3) | C2913202 | 1 | 5 | 24.75 |
-| MAX98357AETE+T | Amplificador (U4) | C910544 | 1 | 6 | 7.86 |
-| TP4056-42-ESOP8 | Cargador (U1) | C16581 | 1 | 7 | 1.33 |
-| AP2112K-3.3TRG1 | Regulador 3.3 V (U2) | C51118 | 1 | 7 | 1.19 |
-| TYPE-C-31-M-12 | USB-C (J1) | C165948 | 1 | 7 | 1.33 |
-| TF-01A | Ranura microSD (J4) | C91145 | 1 | 6 | 1.14 |
-| MSK12C02 | Interruptor (SW1) | C431540 | 1 | 7 | 0.35 |
-| TS-1187A-B-A-B | Botones frontales y reset (SW2 a SW14) | C318884 | 13 | 80 | 1.60 |
-| TS24CA | Gatillos L y R (SW15, SW16) | C393942 | 2 | 15 | 0.45 |
-| AO3401A | MOSFET P (Q1) | C15127 | 1 | 10 | 0.90 |
-| AO3400A | MOSFET N (Q2) | C20917 | 1 | 10 | 0.90 |
-| B5819W | Diodo Schottky (D3) | C8598 | 1 | 20 | 0.60 |
-| KT-0603R | LED rojo (D1) | C2286 | 1 | 20 | 0.20 |
-| KT-0805G | LED verde (D2) | C2297 | 1 | 20 | 0.40 |
-| 10 Ω 0603 | R13 | C22859 | 1 | 100 | 0.10 |
-| 1 kΩ 0603 | R4, R5 | C21190 | 2 | 100 | 0.10 |
-| 3 kΩ 0603 | R3 | C4211 | 1 | 100 | 0.10 |
-| 5.1 kΩ 0603 | R1, R2 | C23186 | 2 | 100 | 0.10 |
-| 10 kΩ 0603 | R7, R8, R9 | C25804 | 3 | 100 | 0.10 |
-| 100 kΩ 0603 | R6, R14, R15 | C25803 | 3 | 100 | 0.10 |
-| 1 MΩ 0603 | R10, R11, R12 | C22935 | 3 | 100 | 0.10 |
-| 100 nF 0603 | C7, C8, C10, C11 | C14663 | 4 | 100 | 0.30 |
-| 1 µF 0603 | C3, C5 | C15849 | 2 | 50 | 0.30 |
-| 10 µF 0603 | C1, C2, C4, C6, C9, C12 | C19702 | 6 | 100 | 2.00 |
+| Pieza | Número | LCSC | Uso | Pedir |
+|---|---|---|---|---|
+| ESP32 | ESP32-S3-WROOM-1-N16R8 | C2913202 | U3 | 4 |
+| Amplificador | MAX98357AETE+T | C910544 | U4 | 5 |
+| Cargador | TP4056-42-ESOP8 | C16581 | U1 | 6 |
+| Ranura microSD | TF-01A | C91145 | J4 | 5 |
+| Botones frontales | TS-1187A-B-A-B | C318884 | SW2 a SW14 | 60 |
+| Gatillos | TS24CA | C393942 | SW15, SW16 | 10 |
+| MOSFET P | AO3401A | C15127 | Q1 | 6 |
+| Resistencia 10 Ω 0603 | | C22859 | R13 | 100 |
+| Resistencia 10 kΩ 0603 | | C25804 | R7, R8, R9 | 100 |
+| Resistencia 100 kΩ 0603 | | C25803 | R6, R14, R15 | 100 |
 
-**Total aproximado: 46 USD**, sin envío ni impuestos.
+Unos 31 USD sin envío ni impuestos. Las resistencias se venden de 100 en 100.
 
-## No va en este pedido
+## No va en estas listas
 
-- **Conector de la pantalla (J3).** Se elige cuando llegue el panel.
-- **Batería, bocina y pantalla.** Se compran aparte.
-- **Pasta de soldar, fundente y esténcil.** El esténcil se pide con la placa en JLCPCB.
+Conector de la pantalla (J3), batería, bocina, pantalla, pasta de soldar y esténcil.

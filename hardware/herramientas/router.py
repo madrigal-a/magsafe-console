@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Trazador de rejilla para magsafe-console. Uso: router.py entrada.kicad_pcb salida.kicad_pcb"""
-import sys, heapq, time
+import sys, heapq, time, os
 import numpy as np
 import pcbnew
 import shapely
@@ -76,7 +76,7 @@ for f in b.GetFootprints():
                 add_obst(None, "fix", li, zp)
 
 # --- cuerpos de conectores: sin pistas ni vías en la cara de atrás
-for bx in (box(126.9, 142.25, 137.1, 149.0), box(150.05, 122.95, 164.5, 137.05)):
+for bx in (box(127.1, 141.25, 136.9, 149.0), box(150.05, 122.95, 164.5, 137.05)):
     add_obst(None, "fix", 2, bx)
 # --- pads
 padinfo = {}   # net -> lista de (ref.num, capas_idx, geom)
@@ -145,36 +145,43 @@ def route_net(net, results, maxexp=2500000):
         else:
             st = np.where(~nb, 1, 0).astype(np.uint8)
         viaok = (cnt[2].sum(axis=0) == 0)
+        if os.environ.get("DEBUGST"):
+            cx,cy=[float(v) for v in os.environ["DEBUGST"].split(":")]; ix=int(round((cx-X0)/G)); iy=int(round((cy-Y0)/G))
+            for l in range(NL):
+                print("capa",l)
+                for y in range(iy-9,iy+10): print("".join(str(st[l][x,y]) for x in range(ix-12,ix+13)))
         stb = [st[l].tobytes() for l in range(NL)]
         viab = viaok.astype(np.uint8).tobytes()
         pads = padinfo[net]
-        padcells = []
+        grp = {}
         for name, li, g in pads:
             cs = cells_in(g)
             if not cs:
                 c = g.centroid
                 cs = [(int(round((c.x - X0) / G)), int(round((c.y - Y0) / G)))]
-            padcells.append((name, li, cs, (g.centroid.x, g.centroid.y)))
+            e = grp.setdefault(name, [name, [], (g.centroid.x, g.centroid.y)])
+            e[1] += [(li, x, y) for x, y in cs]
+        padcells = [tuple(v) for v in grp.values()]   # (nombre, [(capa,x,y)...], centro)
         # árbol: se parte del primer pad y se van uniendo los demás, el más cercano primero
         if net in pretree:
             tree = set(pretree[net]); treepts = [(X0 + x * G, Y0 + y * G) for (l, x, y) in list(pretree[net])[::5]]
             remaining = padcells[:]
         else:
-            tree = set((padcells[0][1], x, y) for x, y in padcells[0][2])
-            treepts = [padcells[0][3]]
+            tree = set(padcells[0][1])
+            treepts = [padcells[0][2]]
             remaining = padcells[1:]
         paths = []
         while remaining:
             # ¿algún pad ya tocado por el árbol?
             rem2 = []
             for pc in remaining:
-                if any((pc[1], x, y) in tree for x, y in pc[2]):
-                    tree.update((pc[1], x, y) for x, y in pc[2]); treepts.append(pc[3])
+                if any(c in tree for c in pc[1]):
+                    tree.update(pc[1]); treepts.append(pc[2])
                 else:
                     rem2.append(pc)
             remaining = rem2
             if not remaining: break
-            remaining.sort(key=lambda pc: min((pc[3][0] - t[0]) ** 2 + (pc[3][1] - t[1]) ** 2 for t in treepts))
+            remaining.sort(key=lambda pc: min((pc[2][0] - t[0]) ** 2 + (pc[2][1] - t[1]) ** 2 for t in treepts))
             pc = remaining.pop(0)
             path = astar(pc, tree, treepts, stb, viab, power, maxexp)
             if path is None:
@@ -182,8 +189,8 @@ def route_net(net, results, maxexp=2500000):
                 return None
             paths.append(path)
             tree.update(path)
-            tree.update((pc[1], x, y) for x, y in pc[2])
-            treepts.append(pc[3])
+            tree.update(pc[1])
+            treepts.append(pc[2])
             step = max(1, len(path) // 6)
             for (l, x, y) in path[::step]:
                 treepts.append((X0 + x * G, Y0 + y * G))
@@ -194,7 +201,7 @@ def route_net(net, results, maxexp=2500000):
             if kind == "route": apply(rs, li, +1, ks=(2,))
 
 def astar(pc, tree, treepts, stb, viab, power, maxexp):
-    name, sli, scells, _ = pc
+    name, scells, _ = pc
     tp = [((tx - X0) / G, (ty - Y0) / G) for tx, ty in treepts]
     if len(tp) > 10: tp = tp[::max(1, len(tp) // 10)]
     def h(x, y):
@@ -207,7 +214,7 @@ def astar(pc, tree, treepts, stb, viab, power, maxexp):
     openq = []
     best = {}
     parent = {}
-    for (x, y) in scells:
+    for (sli, x, y) in scells:
         s = (((sli * W + x) * H + y) * 9) + 8
         best[s] = 0
         heapq.heappush(openq, (h(x, y), 0, s))
@@ -307,12 +314,7 @@ def cells_of(wps):
     return out
 
 # Salida del USB-C trazada a mano (los pads de D+ y D- van intercalados)
-PRE = {
- "/USB_DP": [[(2,131.2,141.0),(2,131.2,140.4),(2,130.8,140.0),(2,130.8,138.9),(2,131.1,138.6),(2,131.9,138.6),(2,132.2,138.9),(2,132.2,141.0)]],
- "/USB_DM": [[(2,131.8,141.0),(2,131.8,140.4),(2,131.5,140.1),(2,131.5,139.5),(1,131.5,139.5),(1,131.6,139.4),(1,132.8,139.4),(2,132.8,139.4),(2,132.8,141.0)]],
- "/CC2": [[(2,130.2,141.0),(2,130.2,140.2),(2,130.0,140.0),(2,130.0,139.5)]],
- "/CC1": [[(2,133.3,141.0),(2,133.3,140.5),(2,133.8,140.0),(2,133.8,139.6)]],
-}
+PRE = {}
 pretree = {}
 
 def order_key(net):

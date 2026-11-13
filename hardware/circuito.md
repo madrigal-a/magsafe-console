@@ -18,10 +18,10 @@ USB-C ──5V──> cargador TP4056 ──> batería LiPo (con protección int
 
 | Bloque | Pieza | LCSC | Notas |
 |---|---|---|---|
-| Conector | USB-C de 16 pines | C165948 | CC1 y CC2 con 5.1 kΩ a GND cada uno |
+| Conector | USB-C de 16 pines, de pines atravesados (GCT USB4085-GF-A) | del profesor | CC1 y CC2 con 5.1 kΩ a GND cada uno |
 | Cargador | TP4056 | C16581 | Resistencia PROG de 3 kΩ: carga a unos 400 mA, suave para la batería de 600 mAh |
 | Protección | La de la propia batería | | Usar una batería con circuito de protección integrado. En v1 no va protección en la placa |
-| Reparto de carga | MOSFET P AO3401A + diodo Schottky B5819W | C15127 | Con USB conectado, la consola se alimenta del USB y no de la batería |
+| Reparto de carga | MOSFET P AO3401A + diodo Schottky 1N5819HW | C15127 | Con USB conectado, la consola se alimenta del USB y no de la batería |
 | Regulador 3.3 V | AP2112K-3.3 | C51118 | 600 mA. Su pin EN va al interruptor de encendido |
 | Encendido | Interruptor deslizable MSK12C02 | C431540 | Apaga el regulador; la carga sigue funcionando. 100 kΩ a GND en EN |
 | Medición de batería | Divisor 1 MΩ + 1 MΩ, con 100 nF | | A GPIO 1 |
@@ -51,7 +51,7 @@ Panel desnudo de 2.4" ST7789V con cable plano. **Pendiente:** número de pines y
 | CS | 10 |
 | DC | 9 |
 | RST | 14 |
-| Luz de fondo | 13, por PWM a través de un MOSFET N AO3400A, con 100 kΩ a GND |
+| Luz de fondo | 13, por PWM a través de un MOSFET N 2N7002, con 100 kΩ a GND |
 
 ## microSD
 
@@ -109,3 +109,7 @@ Doce botones frontales TS-1187A (5.1 × 5.1 × 1.5 mm, LCSC C318884) y dos gatil
 | Modelo de batería | Espacio que deje la PCB dentro de la carcasa |
 | Bocina plana | Grosor final |
 | Posición del anillo MagSafe | No tapar la antena ni la cámara del celular |
+
+## Protección del USB
+
+Un USBLC6-2P6 (U5, SOT-666) entre D+, D-, VBUS y tierra, pegado al conector. Protege al ESP32 de descargas estáticas. Agregado el 13 de noviembre de 2026.

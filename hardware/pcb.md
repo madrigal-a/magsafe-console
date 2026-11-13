@@ -10,8 +10,8 @@ Rojo: cara de enfrente. Azul: cara de atrás. Verde: capa interna 2. Vista desde
 
 - Contorno de 64 × 98 mm con esquinas de 4 mm de radio. Grosor de 0.8 mm, **4 capas**.
 - Capas: enfrente (botones y señal), interna 1 (plano de tierra completo), interna 2 (señal y relleno de tierra), atrás (piezas y señal).
-- Las 68 huellas del esquemático. Falta solo el conector de la pantalla (J3), que no tiene huella.
-- **482 tramos de pista y 102 vías.** Todas las redes conectadas menos las seis de la pantalla que van a J3 (CS, DC, MOSI, SCK, RST y los dos del LED), que se trazan cuando exista el conector.
+- Las 69 huellas del esquemático. Falta solo el conector de la pantalla (J3), que no tiene huella.
+- **470 tramos de pista y 92 vías** (trazado rehecho el 13 de noviembre de 2026). Todas las redes conectadas menos las seis de la pantalla que van a J3 (CS, DC, MOSI, SCK, RST y los dos del LED), que se trazan cuando exista el conector.
 - Zona sin cobre bajo la antena del ESP32, en las cuatro capas.
 - Sin pistas ni vías en la cara de atrás bajo el cuerpo del USB-C y de la ranura microSD.
 - Reglas: pista y separación mínimas de 0.15 mm, 0.3 mm a la orilla, vías de 0.6/0.3 mm, agujero mínimo de 0.2 mm. Clase `Potencia` de 0.4 mm para VBUS, VBAT, VSYS, 3.3 V y bocina; se adelgaza a 0.2 mm al entrar a los pads finos del amplificador y del USB-C.
@@ -23,7 +23,17 @@ Con un trazador automático propio (`hardware/herramientas/router.py`), no a man
 
 Cambios de colocación que pidió el trazado: R1 y R2 intercambiaron lugar (cada una queda del lado de su pin CC) y C9 giró 180°.
 
-Para repetirlo: `PRESTITCH=$(cat prestitch.txt) python3 router.py entrada.kicad_pcb salida.kicad_pcb`, luego `finalize.py` e `islands.py` para coser la tierra. Necesita KiCad 9 (`pcbnew`), `shapely` y `numpy`.
+## Adaptación a las piezas del profesor (13 de noviembre de 2026)
+
+- **USB-C:** ahora es el GCT USB4085-GF-A, de pines atravesados. Va en la cara de atrás, sobresale 2.5 mm de la orilla y sus pines asoman por la cara de enfrente. Se suelda con cautín, no con pasta.
+- **USBLC6-2P6 (U5):** nuevo, entre el conector y las resistencias de CC.
+- **C1, C2, C4, C6, C9 y C12:** pasan de 0603 a 0805.
+- **D2:** pasa de 0805 a 0603. D1 ahora es azul.
+- **Q2** es 2N7002 y **D3** es 1N5819HW; mismas huellas.
+- Se movieron un poco C4, C6, C10, C12, TP1, R1 y R2 para hacer lugar.
+- La salida del USB ya no está dibujada a mano: con pines atravesados el trazador la resuelve solo.
+
+Para repetirlo: `pipeline.sh` (traza, cose la tierra y limpia). Necesita KiCad 9 (`pcbnew`), `shapely` y `numpy`.
 
 ## Dónde quedó cada cosa
 
@@ -75,7 +85,7 @@ R3 es de 3 kΩ: carga a unos 400 mA, más suave para la batería (decidido el 10
 |---|---|---|
 | Antena del ESP32 | Orilla inferior, zona sin cobre solo bajo la antena | El USB-C queda pegado a la antena y el celular queda detrás. El WiFi puede salir débil. Se deja así y se mide en el prototipo |
 | Centro del anillo MagSafe | A 31 mm de la orilla superior. Aprobado | Pensado para iPhone; falta la prueba física con un recorte de 64 × 98 mm |
-| USB-C | Sobresale 1.1 mm | Depende del grosor de la pared de la carcasa |
+| USB-C | Sobresale 2.5 mm; sus pines asoman por enfrente | Depende del grosor de la pared de la carcasa |
 | Tornillos | No hay agujeros | Se definen con la carcasa. Al ponerlos habrá que mover las pistas que estorben |
 | Pistas bajo la pantalla y la batería | Hay pistas en las dos caras de esa zona | Van cubiertas por la máscara; conviene poner cinta aislante bajo la batería |
 

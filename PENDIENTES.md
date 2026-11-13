@@ -24,6 +24,10 @@ Actualizado el 10 de noviembre de 2026. Lista de lo que falta, en el orden en qu
 
 ## PCB
 
+- [x] Adaptar la placa a las piezas del profesor: USB-C de pines atravesados, USBLC6-2P6, capacitores 0805, LED 0603 (ver `hardware/pcb.md`).
+- [ ] Confirmar con el profesor si los capacitores 0805 son de 10 µF o de 15 µF.
+- [ ] Revisar que los pines del USB-C que asoman por enfrente no estorben a la carcasa.
+
 - [ ] Colocar el conector de la pantalla.
 - [ ] Ajustar la colocación con las medidas reales de batería, bocina y pantalla.
 - [ ] Agujeros de montaje, de acuerdo con la carcasa.
